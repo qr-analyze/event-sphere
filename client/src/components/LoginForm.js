@@ -3,7 +3,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-import jwt_decode from "jwt-decode";
+import { jwtDecode } from "jwt-decode"; // Corrected import for jwtDecode
 
 const LoginForm = () => {
     const [email, setEmail] = useState("");
@@ -21,7 +21,7 @@ const LoginForm = () => {
             localStorage.setItem("token", data.token); // Store JWT token in localStorage
 
             // Decode the token to get user role
-            const decodedToken = jwt_decode(data.token);
+            const decodedToken = jwtDecode(data.token); // Use 'jwtDecode' instead of 'jwt_decode'
             if (decodedToken.role === "admin" || decodedToken.role === "organizer") {
                 navigate("/admin");
             } else if (decodedToken.role === "exhibitor") {
