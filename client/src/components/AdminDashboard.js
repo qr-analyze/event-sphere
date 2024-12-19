@@ -1,11 +1,21 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const AdminDashboard = () => {
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        // Remove the token from localStorage
+        localStorage.removeItem("token");
+
+        // Redirect to login page after logout
+        navigate("/login");
+    };
+
     return (
         <div>
-            <h2>Admin Dashboard</h2>
-            <p>Welcome, Admin! You can manage expos, exhibitors, and sessions here.</p>
-            {/* Add admin-specific features here */}
+            <h1>Admin Dashboard</h1>
+            <button onClick={handleLogout}>Logout</button>
         </div>
     );
 };

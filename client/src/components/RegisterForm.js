@@ -1,32 +1,47 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const RegisterForm = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [role, setRole] = useState("attendee");
+    const [error, setError] = useState(""); // State for error messages
+    const [success, setSuccess] = useState(false); // State for success messages
 
     const handleRegister = async (e) => {
         e.preventDefault();
+        setError(""); // Reset error state
+        setSuccess(false); // Reset success state
+
+        // Basic validation before sending the request
+        if (!email.includes("@")) {
+            setError("Please enter a valid email address.");
+            return;
+        }
+        if (password.length < 6) {
+            setError("Password must be at least 6 characters long.");
+            return;
+        }
+
         try {
             const { data } = await axios.post("http://localhost:5000/api/auth/register", {
                 name,
                 email,
-                password,
+                password, // The password will be hashed by the server
                 role,
             });
-            toast.success("Registration successful!", data);
+
+            console.log("Registration successful!", data);
+            setSuccess(true); // Set success message
         } catch (error) {
-            toast.error(error.response?.data?.message || "Registration failed!");
+            console.error(error.response?.data?.message || "Registration failed!");
+            setError(error.response?.data?.message || "Registration failed!");
         }
     };
 
     return (
         <div className="form-container">
-            <ToastContainer />
             <h2>Register</h2>
             <form onSubmit={handleRegister}>
                 <div className="input-group">
@@ -66,7 +81,6 @@ const RegisterForm = () => {
                         onChange={(e) => setRole(e.target.value)}
                         required
                     >
-
                         <option value="organizer">Organizer</option>
                         <option value="exhibitor">Exhibitor</option>
                         <option value="attendee">Attendee</option>
@@ -76,6 +90,10 @@ const RegisterForm = () => {
                     Register
                 </button>
             </form>
+
+            {/* Display error or success messages */}
+            {error && <p className="error">{error}</p>}
+            {success && <p className="success">Registration successful! You can now log in.</p>}
         </div>
     );
 };
