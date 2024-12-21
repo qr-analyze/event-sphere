@@ -1,8 +1,17 @@
 // Navbar.js
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 
 const NavbarComponent = () => {
+    const navigate = useNavigate();
+    const handleLogout = () => {
+        // Remove the token from localStorage
+        localStorage.removeItem("token");
+
+        // Redirect to login page after logout
+        navigate("/login");
+    };
     return (
         <Navbar bg="dark" variant="dark" expand="lg">
             <Container>
@@ -19,8 +28,14 @@ const NavbarComponent = () => {
                             <NavDropdown.Item href="/scheduals/add">Create Schedule</NavDropdown.Item>
                             <NavDropdown.Item href="/scheduals">Schedules List</NavDropdown.Item>
                             <NavDropdown.Item href="/exhibitors">Exhibitors</NavDropdown.Item>
+                            <NavDropdown.Item href="/users">Users</NavDropdown.Item>
+                            <NavDropdown.Item href="/users/add">Add Users</NavDropdown.Item>
+
+
                         </NavDropdown>
                         <Nav.Link href="/login">Login</Nav.Link>
+                        <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+
                         <Nav.Link href="/register">Register</Nav.Link>
 
                     </Nav>

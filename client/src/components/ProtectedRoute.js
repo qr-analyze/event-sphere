@@ -11,5 +11,7 @@ const ProtectedRoute = ({ children }) => {
 
     return children;
 };
-
+router.get('/:userId', authenticate, userController.getUser);
+router.put('/:userId', authenticate, userController.updateUser);
+router.delete('/:userId', authenticate, userController.deleteUser);
 export default ProtectedRoute;

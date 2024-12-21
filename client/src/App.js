@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route, useNavigate, Navigate } from "r
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
 import AdminDashboard from "./components/AdminDashboard";
+import OrganizerDashboard from "./components/OrganizerDashboard";
+
 import ExhibitorDashboard from "./components/ExhibitorDashboard";
 import AttendeeDashboard from "./components/AttendeeDashboard";
 import ExpoManagement from './components/expoManagement';
@@ -12,9 +14,13 @@ import ScheduleList from './components/SchedualList';
 import ExhibitorForm from './components/ExhibitorForm';
 import HomePage from './components/homePage';
 import ExhibitorList from './components/ExhibitorList';
+import UserPage from './components/UserList'
+import AddUser from './components/UserForm'
+
 import { jwtDecode } from "jwt-decode";
 
 import { fetchSchedules, addSchedule, deleteSchedule, editSchedule } from "./api/schedual_axios";
+
 
 // ProtectedRoute component to ensure the user is logged in and the token is valid
 const ProtectedRoute = ({ children }) => {
@@ -159,6 +165,14 @@ function App() {
           }
         />
         <Route
+          path="/organizer"
+          element={
+            <ProtectedRoute>
+              <OrganizerDashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
           path="/expos"
           element={
             <ProtectedRoute>
@@ -171,6 +185,22 @@ function App() {
           element={
             <ProtectedRoute>
               <AttendeeDashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/users"
+          element={
+            <ProtectedRoute>
+              <UserPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/users/add"
+          element={
+            <ProtectedRoute>
+              <AddUser />
             </ProtectedRoute>
           }
         />
