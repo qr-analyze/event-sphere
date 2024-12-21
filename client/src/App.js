@@ -7,13 +7,14 @@ import ExhibitorDashboard from "./components/ExhibitorDashboard";
 import AttendeeDashboard from "./components/AttendeeDashboard";
 import ExpoManagement from './components/expoManagement';
 import ExpoList from './components/exposList';
-
-
+import ScheduleForm from './components/schedualForm';
+import ScheduleList from './components/SchedualList';
 import ExhibitorForm from './components/ExhibitorForm';
 import HomePage from './components/homePage';
-
 import ExhibitorList from './components/ExhibitorList';
 import { jwtDecode } from "jwt-decode";
+
+import { fetchSchedules, addSchedule, deleteSchedule, editSchedule } from "./api/schedual_axios";
 
 // ProtectedRoute component to ensure the user is logged in and the token is valid
 const ProtectedRoute = ({ children }) => {
@@ -78,11 +79,8 @@ function App() {
       <Routes>
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegisterForm />} />
-
-
         <Route path="/portal" element={<RedirectBasedOnRole />} />
         <Route path="/" element={<HomePage />} />
-
 
         {/* Protected Routes */}
         <Route
@@ -106,6 +104,33 @@ function App() {
           element={
             <ProtectedRoute>
               <ExhibitorList />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/scheduals/"
+          element={
+            <ProtectedRoute>
+              <ScheduleList
+                fetchSchedules={fetchSchedules}
+                deleteSchedule={deleteSchedule}
+              />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/scheduals/add"
+          element={
+            <ProtectedRoute>
+              <ScheduleForm addSchedule={addSchedule} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/scheduals/edit/:id"
+          element={
+            <ProtectedRoute>
+              <ScheduleForm editSchedule={editSchedule} />
             </ProtectedRoute>
           }
         />

@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-
+import NavbarComponent from "./Navbar";
 const AdminDashboard = () => {
     const navigate = useNavigate();
 
@@ -13,10 +13,10 @@ const AdminDashboard = () => {
     };
 
     return (
-        <div>
+        <><NavbarComponent /><div>
             <h1>Admin Dashboard</h1>
             <button onClick={handleLogout}>Logout</button>
-        </div>
+        </div></>
     );
 };
 

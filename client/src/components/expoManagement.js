@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { Form, Button, Container, Row, Col, ListGroup, Alert } from 'react-bootstrap';
+import NavbarComponent from './Navbar';
 
 const ExpoManagement = () => {
     const [expos, setExpos] = useState([]);
@@ -108,7 +109,7 @@ const ExpoManagement = () => {
     };
 
     return (
-        <Container>
+        <><NavbarComponent /><Container>
             <h2 className="my-4 text-center">Expo Management</h2>
 
             {/* Success and Error Messages */}
@@ -124,16 +125,14 @@ const ExpoManagement = () => {
                             placeholder="Title"
                             value={expoData.title}
                             onChange={(e) => setExpoData({ ...expoData, title: e.target.value })}
-                            required
-                        />
+                            required />
                     </Col>
                     <Col xs={12} md={6}>
                         <Form.Control
                             type="date"
                             value={expoData.date}
                             onChange={(e) => setExpoData({ ...expoData, date: e.target.value })}
-                            required
-                        />
+                            required />
                     </Col>
                 </Row>
                 <Row className="mb-3">
@@ -143,8 +142,7 @@ const ExpoManagement = () => {
                             placeholder="Location"
                             value={expoData.location}
                             onChange={(e) => setExpoData({ ...expoData, location: e.target.value })}
-                            required
-                        />
+                            required />
                     </Col>
                     <Col xs={12} md={6}>
                         <Form.Control
@@ -152,8 +150,7 @@ const ExpoManagement = () => {
                             placeholder="Theme"
                             value={expoData.theme}
                             onChange={(e) => setExpoData({ ...expoData, theme: e.target.value })}
-                            required
-                        />
+                            required />
                     </Col>
                 </Row>
                 <Row className="mb-3">
@@ -163,8 +160,7 @@ const ExpoManagement = () => {
                             placeholder="Description"
                             value={expoData.description}
                             onChange={(e) => setExpoData({ ...expoData, description: e.target.value })}
-                            required
-                        />
+                            required />
                     </Col>
                 </Row>
                 <Button variant="primary" type="submit" className="w-100">
@@ -182,16 +178,14 @@ const ExpoManagement = () => {
                                 type="text"
                                 value={editExpoData.title}
                                 onChange={(e) => setEditExpoData({ ...editExpoData, title: e.target.value })}
-                                required
-                            />
+                                required />
                         </Col>
                         <Col xs={12} md={6}>
                             <Form.Control
                                 type="date"
                                 value={editExpoData.date}
                                 onChange={(e) => setEditExpoData({ ...editExpoData, date: e.target.value })}
-                                required
-                            />
+                                required />
                         </Col>
                     </Row>
                     <Row className="mb-3">
@@ -200,16 +194,14 @@ const ExpoManagement = () => {
                                 type="text"
                                 value={editExpoData.location}
                                 onChange={(e) => setEditExpoData({ ...editExpoData, location: e.target.value })}
-                                required
-                            />
+                                required />
                         </Col>
                         <Col xs={12} md={6}>
                             <Form.Control
                                 type="text"
                                 value={editExpoData.theme}
                                 onChange={(e) => setEditExpoData({ ...editExpoData, theme: e.target.value })}
-                                required
-                            />
+                                required />
                         </Col>
                     </Row>
                     <Row className="mb-3">
@@ -218,8 +210,7 @@ const ExpoManagement = () => {
                                 as="textarea"
                                 value={editExpoData.description}
                                 onChange={(e) => setEditExpoData({ ...editExpoData, description: e.target.value })}
-                                required
-                            />
+                                required />
                         </Col>
                     </Row>
                     <Button variant="primary" type="submit" className="w-100">
@@ -249,7 +240,7 @@ const ExpoManagement = () => {
                     </ListGroup.Item>
                 ))}
             </ListGroup>
-        </Container>
+        </Container></>
     );
 };
 

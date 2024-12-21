@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode"; // Correct import for jwt-decode
-
+import NavbarComponent from "./Navbar";
 const LoginForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -67,40 +67,40 @@ const LoginForm = () => {
     };
 
     return (
-        <div className="form-container">
-            <h2>Login</h2>
-            <form onSubmit={handleLogin}>
-                <div className="input-group">
-                    <label>Email</label>
-                    <input
-                        type="email"
-                        placeholder="Enter your email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                </div>
-                <div className="input-group">
-                    <label>Password</label>
-                    <input
-                        type="password"
-                        placeholder="Enter your password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </div>
-                {error && <p className="error-message">{error}</p>} {/* Display error message */}
-                <button type="submit" className="btn">Login</button>
-            </form>
+        <><div>
+            <NavbarComponent />
+        </div><div className="form-container">
+                <h2>Login</h2>
+                <form onSubmit={handleLogin}>
+                    <div className="input-group">
+                        <label>Email</label>
+                        <input
+                            type="email"
+                            placeholder="Enter your email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required />
+                    </div>
+                    <div className="input-group">
+                        <label>Password</label>
+                        <input
+                            type="password"
+                            placeholder="Enter your password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required />
+                    </div>
+                    {error && <p className="error-message">{error}</p>} {/* Display error message */}
+                    <button type="submit" className="btn">Login</button>
+                </form>
 
-            {/* Logout button */}
-            {localStorage.getItem("token") && (
-                <button onClick={handleLogout} className="btn logout-btn">
-                    Logout
-                </button>
-            )}
-        </div>
+                {/* Logout button */}
+                {localStorage.getItem("token") && (
+                    <button onClick={handleLogout} className="btn logout-btn">
+                        Logout
+                    </button>
+                )}
+            </div></>
     );
 };
 

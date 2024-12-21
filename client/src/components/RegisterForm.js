@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-
+import NavbarComponent from "./Navbar";
 const RegisterForm = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -41,7 +41,7 @@ const RegisterForm = () => {
     };
 
     return (
-        <div className="form-container">
+        <><NavbarComponent /><div className="form-container">
             <h2>Register</h2>
             <form onSubmit={handleRegister}>
                 <div className="input-group">
@@ -51,8 +51,7 @@ const RegisterForm = () => {
                         placeholder="Enter your name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        required
-                    />
+                        required />
                 </div>
                 <div className="input-group">
                     <label>Email</label>
@@ -61,8 +60,7 @@ const RegisterForm = () => {
                         placeholder="Enter your email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
+                        required />
                 </div>
                 <div className="input-group">
                     <label>Password</label>
@@ -71,8 +69,7 @@ const RegisterForm = () => {
                         placeholder="Enter your password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
+                        required />
                 </div>
                 <div className="input-group">
                     <label>Role</label>
@@ -96,7 +93,7 @@ const RegisterForm = () => {
             {/* Display error or success messages */}
             {error && <p className="error">{error}</p>}
             {success && <p className="success">Registration successful! You can now log in.</p>}
-        </div>
+        </div></>
     );
 };
 

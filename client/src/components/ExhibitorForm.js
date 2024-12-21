@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-
+import NavbarComponent from "./Navbar";
 const ExhibitorForm = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
@@ -79,15 +79,14 @@ const ExhibitorForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <><NavbarComponent /><form onSubmit={handleSubmit}>
             <div>
                 <label>Company Name:</label>
                 <input
                     type="text"
                     name="companyName"
                     value={formData.companyName}
-                    onChange={handleChange}
-                />
+                    onChange={handleChange} />
             </div>
             <div>
                 <label>Email:</label>
@@ -95,8 +94,7 @@ const ExhibitorForm = () => {
                     type="email"
                     name="email"
                     value={formData.email}
-                    onChange={handleChange}
-                />
+                    onChange={handleChange} />
             </div>
             <div>
                 <label>Description:</label>
@@ -104,8 +102,7 @@ const ExhibitorForm = () => {
                     type="text"
                     name="description"
                     value={formData.description}
-                    onChange={handleChange}
-                />
+                    onChange={handleChange} />
             </div>
             <div>
                 <label>Booth Preferences:</label>
@@ -113,8 +110,7 @@ const ExhibitorForm = () => {
                     type="text"
                     name="boothPreferences"
                     value={formData.boothPreferences}
-                    onChange={handleChange}
-                />
+                    onChange={handleChange} />
             </div>
             <div>
                 <label>Contact Phone:</label>
@@ -122,8 +118,7 @@ const ExhibitorForm = () => {
                     type="text"
                     name="contactInfo[phone]"
                     value={formData.contactInfo.phone}
-                    onChange={handleChange}
-                />
+                    onChange={handleChange} />
             </div>
             <div>
                 <label>Contact Address:</label>
@@ -131,19 +126,17 @@ const ExhibitorForm = () => {
                     type="text"
                     name="contactInfo[address]"
                     value={formData.contactInfo.address}
-                    onChange={handleChange}
-                />
+                    onChange={handleChange} />
             </div>
             <div>
                 <label>Logo:</label>
                 <input
                     type="file"
                     name="logo"
-                    onChange={handleLogoChange}
-                />
+                    onChange={handleLogoChange} />
             </div>
             <button type="submit">Submit</button>
-        </form>
+        </form></>
     );
 };
 

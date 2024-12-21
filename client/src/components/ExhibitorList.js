@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getAllExhibitors, approveExhibitor, deleteExhibitor, updateExhibitor } from '../api/exhibitorApi';
 import { Table, Button, Badge, Modal, Form } from 'react-bootstrap';
-
+import NavbarComponent from "./Navbar";
 const ExhibitorList = () => {
     const [exhibitors, setExhibitors] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -106,7 +106,7 @@ const ExhibitorList = () => {
     }
 
     return (
-        <div className="container mt-4">
+        <><NavbarComponent /><div className="container mt-4">
             <h2>Exhibitors List</h2>
             <Table striped bordered hover responsive>
                 <thead>
@@ -171,8 +171,7 @@ const ExhibitorList = () => {
                                 type="text"
                                 name="companyName"
                                 value={formData.companyName}
-                                onChange={handleFormChange}
-                            />
+                                onChange={handleFormChange} />
                         </Form.Group>
 
                         <Form.Group controlId="formEmail">
@@ -181,8 +180,7 @@ const ExhibitorList = () => {
                                 type="email"
                                 name="email"
                                 value={formData.email}
-                                onChange={handleFormChange}
-                            />
+                                onChange={handleFormChange} />
                         </Form.Group>
 
                         <Form.Group controlId="formBoothPreferences">
@@ -191,8 +189,7 @@ const ExhibitorList = () => {
                                 type="text"
                                 name="boothPreferences"
                                 value={formData.boothPreferences}
-                                onChange={handleFormChange}
-                            />
+                                onChange={handleFormChange} />
                         </Form.Group>
 
                         <Form.Group controlId="formDescription">
@@ -202,8 +199,7 @@ const ExhibitorList = () => {
                                 rows={3}
                                 name="description"
                                 value={formData.description}
-                                onChange={handleFormChange}
-                            />
+                                onChange={handleFormChange} />
                         </Form.Group>
                     </Form>
                 </Modal.Body>
@@ -216,7 +212,7 @@ const ExhibitorList = () => {
                     </Button>
                 </Modal.Footer>
             </Modal>
-        </div>
+        </div></>
     );
 };
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { Table, Button, Modal, Form } from 'react-bootstrap';
 import { getAllExpos, deleteExpo, updateExpo } from '../api/expoaxios'; // Import the functions
-
+import NavbarComponent from "./Navbar";
 const ExpoList = () => {
     const [expos, setExpos] = useState([]);
     const [editForm, setEditForm] = useState(null);
@@ -58,7 +58,7 @@ const ExpoList = () => {
     };
 
     return (
-        <div className="container mt-5">
+        <><NavbarComponent /><div className="container mt-5">
             <h1>Expo List</h1>
             <Table striped bordered hover responsive>
                 <thead>
@@ -101,18 +101,16 @@ const ExpoList = () => {
                                 type="text"
                                 value={editForm?.title || ''}
                                 onChange={(e) => setEditForm({ ...editForm, title: e.target.value })}
-                                required
-                            />
+                                required />
                         </Form.Group>
 
                         <Form.Group controlId="date">
                             <Form.Label>Date</Form.Label>
                             <Form.Control
-                                type="date"  // Use the date input type for proper date formatting in the form
-                                value={editForm?.date ? editForm.date.split('T')[0] : ''}  // Extract only the date part
+                                type="date" // Use the date input type for proper date formatting in the form
+                                value={editForm?.date ? editForm.date.split('T')[0] : ''} // Extract only the date part
                                 onChange={(e) => setEditForm({ ...editForm, date: e.target.value })}
-                                required
-                            />
+                                required />
                         </Form.Group>
 
                         <Form.Group controlId="location">
@@ -121,8 +119,7 @@ const ExpoList = () => {
                                 type="text"
                                 value={editForm?.location || ''}
                                 onChange={(e) => setEditForm({ ...editForm, location: e.target.value })}
-                                required
-                            />
+                                required />
                         </Form.Group>
 
                         <Form.Group controlId="description">
@@ -130,8 +127,7 @@ const ExpoList = () => {
                             <Form.Control
                                 as="textarea"
                                 value={editForm?.description || ''}
-                                onChange={(e) => setEditForm({ ...editForm, description: e.target.value })}
-                            />
+                                onChange={(e) => setEditForm({ ...editForm, description: e.target.value })} />
                         </Form.Group>
 
                         <Form.Group controlId="theme">
@@ -139,8 +135,7 @@ const ExpoList = () => {
                             <Form.Control
                                 type="text"
                                 value={editForm?.theme || ''}
-                                onChange={(e) => setEditForm({ ...editForm, theme: e.target.value })}
-                            />
+                                onChange={(e) => setEditForm({ ...editForm, theme: e.target.value })} />
                         </Form.Group>
 
                         <Button variant="primary" type="submit" className="mt-2">
@@ -149,7 +144,7 @@ const ExpoList = () => {
                     </Form>
                 </Modal.Body>
             </Modal>
-        </div>
+        </div></>
     );
 };
 

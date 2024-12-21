@@ -22,13 +22,13 @@ const exhibitorRoutes = require('./routes/exhibitorRoutes');
 const authRoutes = require("./routes/authRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const expoRoutes = require("./routes/expoRoutes"); // Expo routes (create, get expos)
-
+const scheduleRoutes = require('./routes/schedualRoutes');
 // Use routes
 app.use("/api/auth", authRoutes); // Public routes for authentication (register/login)
 app.use("/api/admin", adminRoutes); // Protected admin routes (requires authentication)
 app.use("/api/expos", expoRoutes); // Expo routes (create, get expos)
 app.use("/api/exhibitors", exhibitorRoutes); // Exhibitor routes
-
+app.use('/api/schedules', scheduleRoutes);
 // Log incoming requests to the '/api/exhibitors' route for debugging
 app.use('/api/exhibitors', (req, res, next) => {
     console.log('Request URL:', req.originalUrl); // Log the incoming request
