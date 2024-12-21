@@ -82,6 +82,8 @@ const RegisterForm = () => {
                         required
                     >
                         <option value="organizer">Organizer</option>
+                        <option value="admin">Admin</option>
+
                         <option value="exhibitor">Exhibitor</option>
                         <option value="attendee">Attendee</option>
                     </select>

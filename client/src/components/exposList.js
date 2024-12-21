@@ -19,6 +19,12 @@ const ExpoList = () => {
             });
     }, []);
 
+    // Helper function to format the date
+    const formatDate = (date) => {
+        const d = new Date(date);
+        return d.toLocaleDateString("en-GB"); // Format as "DD/MM/YYYY"
+    };
+
     const handleEdit = (expo) => {
         setEditForm({ ...expo });  // Create a copy of the expo object to avoid direct mutation
         setShowEditModal(true);
@@ -69,7 +75,7 @@ const ExpoList = () => {
                     {expos.map(expo => (
                         <tr key={expo._id}>
                             <td>{expo.title}</td>
-                            <td>{expo.date}</td>
+                            <td>{formatDate(expo.date)}</td> {/* Format date here */}
                             <td>{expo.location}</td>
                             <td>{expo.description}</td>
                             <td>{expo.theme}</td>
@@ -102,8 +108,8 @@ const ExpoList = () => {
                         <Form.Group controlId="date">
                             <Form.Label>Date</Form.Label>
                             <Form.Control
-                                type="text"
-                                value={editForm?.date || ''}
+                                type="date"  // Use the date input type for proper date formatting in the form
+                                value={editForm?.date ? editForm.date.split('T')[0] : ''}  // Extract only the date part
                                 onChange={(e) => setEditForm({ ...editForm, date: e.target.value })}
                                 required
                             />

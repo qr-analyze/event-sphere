@@ -10,6 +10,8 @@ import ExpoList from './components/exposList';
 
 
 import ExhibitorForm from './components/ExhibitorForm';
+import HomePage from './components/homePage';
+
 import ExhibitorList from './components/ExhibitorList';
 import { jwtDecode } from "jwt-decode";
 
@@ -78,7 +80,9 @@ function App() {
         <Route path="/register" element={<RegisterForm />} />
 
 
-        <Route path="/" element={<RedirectBasedOnRole />} />
+        <Route path="/portal" element={<RedirectBasedOnRole />} />
+        <Route path="/" element={<HomePage />} />
+
 
         {/* Protected Routes */}
         <Route

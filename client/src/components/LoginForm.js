@@ -31,22 +31,27 @@ const LoginForm = () => {
             console.log("Decoded token:", decodedToken);
 
             // Handle redirection based on the role
-            switch (decodedToken.role) {
-                case "admin":
-                    navigate("/admin");
-                    break;
-                case "organizer":
-                    navigate("/organizer");
-                    break;
-                case "exhibitor":
-                    navigate("/exhibitor");
-                    break;
-                case "attendee":
-                    navigate("/attendee");
-                    break;
-                default:
-                    console.error("Unknown role:", decodedToken.role);
-                    setError("Invalid user role.");
+            if (decodedToken.role) {
+                switch (decodedToken.role) {
+                    case "admin":
+                        navigate("/admin");
+                        break;
+                    case "organizer":
+                        navigate("/organizer");
+                        break;
+                    case "exhibitor":
+                        navigate("/exhibitor");
+                        break;
+                    case "attendee":
+                        navigate("/attendee");
+                        break;
+                    default:
+                        console.error("Unknown role:", decodedToken.role);
+                        setError("Invalid user role.");
+                }
+            } else {
+                console.error("Role not found in token.");
+                setError("Invalid role in token.");
             }
         } catch (error) {
             console.error("Error during login:", error.response?.data?.message || error.message);
